@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b7bc611ef6843fdad0b524dbbc55228, type: 3}
+  m_Name: TankDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDefinition
+  enemyType: 2
+  prefab: {fileID: 9194799999132555761, guid: 0a4fa5b84b31e554bb19c5739dfa889c, type: 3}
+  sprite: {fileID: 3389076845611689534, guid: 984a2e9a3cd8d374fa93bf7b22598674, type: 3}
+  maximumHealth: 5
+  movementSpeed: 200
+  scoreValue: 10
+  zigzagAmplitude: 0
+  zigzagFrequency: 2
+  projectilePrefab: {fileID: 6463233459139527346, guid: 9151094888760954b949caeb9d2308a8, type: 3}
+  fireInterval: 3
+  projectileSpeed: 350

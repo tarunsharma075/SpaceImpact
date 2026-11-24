@@ -5,6 +5,8 @@ public sealed class EnemyController : MonoBehaviour
 {
     private EnemyDefinition definition;
     private EnemyMovement movement;
+    private FighterAttack fighterAttack;
+    private TankAttack tankAttack;
     private RectTransform enemyRect;
     private RectTransform playArea;
     private int currentHealth;
@@ -15,6 +17,8 @@ public sealed class EnemyController : MonoBehaviour
     {
         enemyRect = transform as RectTransform;
         movement = GetComponent<EnemyMovement>();
+        fighterAttack = GetComponent<FighterAttack>();
+        tankAttack = GetComponent<TankAttack>();
     }
 
     public void Initialize(EnemyDefinition enemyDefinition, RectTransform area)
@@ -25,6 +29,10 @@ public sealed class EnemyController : MonoBehaviour
         Image image = GetComponent<Image>();
         if (image != null && definition.Sprite != null) image.sprite = definition.Sprite;
         if (movement != null) movement.Initialize(definition, playArea);
+        if (fighterAttack != null)
+            fighterAttack.Initialize(definition, playArea, GameplayController.Instance != null ? GameplayController.Instance.BulletPool : null);
+        if (tankAttack != null)
+            tankAttack.Initialize(definition, playArea, GameplayController.Instance != null ? GameplayController.Instance.BulletPool : null);
     }
 
     private void Update()

@@ -30,6 +30,9 @@ public sealed class PlayerController : MonoBehaviour
 
     public PlayerModel Model => model;
     public PlayerService Service => service;
+    public RectTransform Rect => transform as RectTransform;
+
+    public void TakeDamage(int amount) => service?.TakeDamage(amount);
 
     private void Awake()
     {

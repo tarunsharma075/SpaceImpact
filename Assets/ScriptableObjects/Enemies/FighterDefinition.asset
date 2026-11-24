@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b7bc611ef6843fdad0b524dbbc55228, type: 3}
+  m_Name: FighterDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDefinition
+  enemyType: 1
+  prefab: {fileID: 695544410708054363, guid: 12bab606dfe950740947e1248d63af44, type: 3}
+  sprite: {fileID: -2224070440772841203, guid: c504db652f4cf1745b3ceab2d9c025b2, type: 3}
+  maximumHealth: 2
+  movementSpeed: 350
+  scoreValue: 5
+  zigzagAmplitude: 0
+  zigzagFrequency: 2
+  projectilePrefab: {fileID: 6229134061528937101, guid: 3f3dac68144b47b6b58891970298378e, type: 3}
+  fireInterval: 1
+  projectileSpeed: 550

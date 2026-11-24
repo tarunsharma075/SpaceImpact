@@ -69,3 +69,36 @@ Current key files
 - Player bullets now hit overlapping enemies; defeating the Scout adds its three points through PlayerService. The score HUD reads the player score and updates when it changes.
 - The enemy type enum includes Fighter and Tank for future definitions; their prefabs and behavior are not created yet.
 - No Unity Play Mode/runtime verification has been performed yet.
+
+2026-11-24 — Fighter bullet sprite concept
+- Created Assets/Sprites/FighterBullet.png: a small blue energy orb with a bright core, cyan ring, blue edge, and short right-side trail for a left-traveling Fighter shot.
+- Imported it as a Unity Sprite asset only; it is not assigned to a prefab or used in the Game scene.
+
+2026-11-24 — Fighter enemy and pooled energy shots (approved)
+- Extended EnemyDefinition with projectile prefab, fire interval, and projectile speed data.
+- Created FighterDefinition: Fighter enum type, Fighter prefab and sprite, 2 health, movement speed 350, defeat score 5, FighterEnergyBullet prefab, 2-second firing interval, and projectile speed 550.
+- Added FighterMovement for steady leftward movement and FighterAttack, which uses Fighter/BulletPointOne and Fighter/BulletPointtwo to fire two blue energy balls in each volley.
+- Created Assets/Prefabs/FighterEnergyBullet.prefab using the generated FighterBullet Sprite and added EnemyBulletMovement for leftward travel, player-hit handling, and returning to the pool after impact or leaving the play area.
+- Extended the generic BulletPool to maintain queues by projectile prefab. PlayerController and GameplayController share the same pool component; player and enemy shots both obtain and return objects through it, with no per-shot Instantiate calls.
+- Added FighterDefinition to GameplayController's enemy definitions. It now randomly spawns Scouts and Fighters from the existing three spawn points at the existing 2.5-second gap.
+- Enemy shots reduce player model health on overlap. The existing heart HUD has not been connected to health changes yet.
+- No Unity Play Mode/runtime verification has been performed yet.
+
+2026-11-24 — Fighter firing timing adjustment
+- FighterAttack now fires its first two-shot volley immediately when the Fighter is initialized; subsequent volleys use the enemy definition's fire interval.
+- Set FighterDefinition fireInterval to 1 second. The fire interval remains individually editable on each EnemyDefinition ScriptableObject in the Inspector.
+
+2026-11-24 — Tank shell sprite concept
+- Created Assets/Sprites/TankShell.png: an orange-red armored shell with a hot core and short exhaust trail, facing left for the Tank projectile.
+- Imported it as a Unity Sprite asset only; it is not assigned to a prefab or added to a scene.
+
+2026-11-24 — Tank behavior and level spawn pacing (approved)
+- Added TankMovement and TankAttack to the existing Tank prefab. The Tank moves left at 200 UI units/second and fires immediately, then fires its heavy TankShell every 3 seconds at 350 UI units/second.
+- Reused the existing Tank SpawnPoint and TankCanon prefab; TankCanon now displays TankShell and has EnemyBulletMovement, so its shells use the shared generic BulletPool and damage the player on overlap.
+- Created TankDefinition with 5 health, 10 defeat points, and the Tank prefab/projectile references.
+- GameplayController now spawns 5 Scouts per Fighter and waits until at least 10 Scouts and 3 Fighters have spawned before spawning a Tank. Because one Fighter follows every 5 Scouts, the Tank threshold first resolves after 15 Scouts and 3 Fighters; the counters then reset for the next cycle.
+- Level 1 spawn gap is 4 seconds; it decreases by 0.2 seconds per level and is capped at 1.2 seconds. These values and spawn ratios are Inspector fields. SetLevel and AdvanceLevel are available to level progression code; automatic level completion/advancement is not connected yet because no level-end condition has been specified.
+- No Unity Play Mode/runtime verification has been performed yet.
+2026-11-24 — Tank firing initialization fix
+- EnemyController now finds TankAttack and initializes it with the tank's EnemyDefinition, play area, and the shared BulletPool, matching the Fighter setup.
+- This fixes the Tank attack's uninitialized references, which previously caused its Update method to return without firing.

@@ -20,3 +20,6 @@ MonoBehaviour:
   scoreValue: 3
   zigzagAmplitude: 90
   zigzagFrequency: 2
+  projectilePrefab: {fileID: 0}
+  fireInterval: 2
+  projectileSpeed: 550

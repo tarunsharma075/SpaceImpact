@@ -11,6 +11,10 @@ public sealed class EnemyDefinition : ScriptableObject
     [SerializeField, Min(0)] private int scoreValue = 3;
     [SerializeField, Min(0f)] private float zigzagAmplitude = 90f;
     [SerializeField, Min(0.01f)] private float zigzagFrequency = 2f;
+    [SerializeField] private GameObject projectilePrefab;
+    [Tooltip("Seconds between volleys for this enemy definition.")]
+    [SerializeField, Min(0.1f)] private float fireInterval = 1f;
+    [SerializeField, Min(0f)] private float projectileSpeed = 550f;
 
     public EnemyType Type => enemyType;
     public GameObject Prefab => prefab;
@@ -20,4 +24,7 @@ public sealed class EnemyDefinition : ScriptableObject
     public int ScoreValue => Mathf.Max(0, scoreValue);
     public float ZigzagAmplitude => Mathf.Max(0f, zigzagAmplitude);
     public float ZigzagFrequency => Mathf.Max(0.01f, zigzagFrequency);
+    public GameObject ProjectilePrefab => projectilePrefab;
+    public float FireInterval => Mathf.Max(0.1f, fireInterval);
+    public float ProjectileSpeed => Mathf.Max(0f, projectileSpeed);
 }
